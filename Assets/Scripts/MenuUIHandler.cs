@@ -7,12 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    public GameObject titleScreen;
-    public GameObject nameField;
-    public GameObject playButton;
-    public GameObject highScoreButton;
-    public GameObject startButton;
-    public GameObject exitButton;
+    public GameObject startMenu;
+    public GameObject nameMenu;
     private string playerName;
     public TMP_InputField textBox;
 
@@ -21,9 +17,8 @@ public class MenuUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        titleScreen.SetActive(true);
-        nameField.SetActive(false);
-        playButton.SetActive(false);
+        startMenu.SetActive(true);
+        nameMenu.SetActive(false);
 
     }
 
@@ -35,11 +30,8 @@ public class MenuUIHandler : MonoBehaviour
 
     private void EnterNameInput()
     {
-        startButton.SetActive(false);
-        highScoreButton.SetActive(false);
-        exitButton.SetActive(false);
-        nameField.SetActive(true);
-        playButton.SetActive(true);
+        startMenu.SetActive(false);
+        nameMenu.SetActive(true);
     }
 
     public void GetUserName()
