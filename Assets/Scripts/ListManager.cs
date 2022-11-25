@@ -25,20 +25,25 @@ public static class ListManager
             //iterates through all high scores to a maximum number
             for (int i = 0; i < maxSize; i++)
             {
+                Debug.Log("current list size is " + itemCount);
+                Debug.Log("current i is " + i);
 
                 item = S[i];
 
                 //if the list is not full and smallest score, adds to end
-                if (i < S.Count)
-                {
-                    S.Add(current);
-                    break;
-                }
+
 
                 //inserts score in proper position
                 if (current.score > item.score)
                 {
                     S.Insert(i, current);
+                    Debug.Log("score added at " + i);
+                    break;
+                }
+
+                if (i == S.Count - 1)
+                {
+                    S.Add(current);
                     break;
                 }
             }
