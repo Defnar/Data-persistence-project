@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -15,9 +16,6 @@ public class MainManager : MonoBehaviour
 
     private bool m_Started = false;
     private int m_Points;
-
-    private bool m_GameOver = false;
-
     private int bestScore;
     private string bestUser;
     public Text bestUserScore;
@@ -58,21 +56,7 @@ public class MainManager : MonoBehaviour
                 Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
             }
         }
-        else if (m_GameOver)
-        {
-            if (m_Points > GameManager.Instance.bestScore)
-            {
-                GameManager.Instance.bestScore = m_Points;
-                GameManager.Instance.bestScoreUsername = GameManager.Instance.playerName;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
     }
-
-
 
     void AddPoint(int point)
     {
@@ -82,16 +66,35 @@ public class MainManager : MonoBehaviour
 
     private void highestScore()
     {
-        bestScore = GameManager.Instance.bestScore;
-        bestUser = GameManager.Instance.bestScoreUsername;
+        if (GameManager.Instance.highScoreList.Count > 0)
+        {
+            bestScore = GameManager.Instance.highScoreList[0].score;
+            bestUser = GameManager.Instance.highScoreList[0].name;
+        }
+        else
+        {
+            bestScore = 0;
+            bestUser = "";
+        }
         bestUserScore.text = $"Best Score: {bestScore} \n Name : {bestUser}";
     }
 
     public void GameOver()
     {
-        m_GameOver = true;
         GameOverText.SetActive(true);
         GameManager.Instance.score = m_Points;
         GameManager.Instance.addToHighScores();
+        highestScore();
     }
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void returnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

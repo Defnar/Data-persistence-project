@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
@@ -58,6 +59,15 @@ public class MenuUIHandler : MonoBehaviour
     {
         titleScreen.SetActive(false);
         highScoreMenu.SetActive(true);
+    }
+
+    public void exitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
 }

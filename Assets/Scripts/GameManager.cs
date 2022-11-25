@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
     public string playerName;
-    public string bestScoreUsername;
-    public int bestScore;
     public int score;
     public List<HighScores> highScoreList = new List<HighScores>();
 
