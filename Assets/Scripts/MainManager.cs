@@ -91,5 +91,7 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        GameManager.Instance.score = m_Points;
+        GameManager.Instance.addToHighScores();
     }
 }
