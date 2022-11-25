@@ -11,15 +11,15 @@ public class MenuUIHandler : MonoBehaviour
     public GameObject nameMenu;
     private string playerName;
     public TMP_InputField textBox;
+    public GameObject highScoreMenu;
+    public GameObject titleScreen;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        startMenu.SetActive(true);
-        nameMenu.SetActive(false);
-
+        MainScreen();
     }
 
     // Update is called once per frame
@@ -28,18 +28,36 @@ public class MenuUIHandler : MonoBehaviour
 
     }
 
+    public void MainScreen()
+    {
+        titleScreen.SetActive(true);
+        startMenu.SetActive(true);
+        nameMenu.SetActive(false);
+        highScoreMenu.SetActive(false);
+    }
+
+    //allows input of name
     private void EnterNameInput()
     {
         startMenu.SetActive(false);
         nameMenu.SetActive(true);
     }
 
+
+    //saves name and starts game
     public void GetUserName()
     {
         playerName = textBox.text;
         GameManager.Instance.storeName(playerName);
         Debug.Log(GameManager.Instance.playerName);
         SceneManager.LoadScene(1);
+    }
+
+    //loads high score menu;
+    public void OpenHighScores()
+    {
+        titleScreen.SetActive(false);
+        highScoreMenu.SetActive(true);
     }
 
 }
