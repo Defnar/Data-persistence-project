@@ -25,8 +25,6 @@ public static class ListManager
             //iterates through all high scores to a maximum number
             for (int i = 0; i < maxSize; i++)
             {
-                Debug.Log("current list size is " + itemCount);
-                Debug.Log("current i is " + i);
 
                 item = S[i];
 
@@ -37,7 +35,6 @@ public static class ListManager
                 if (current.score > item.score)
                 {
                     S.Insert(i, current);
-                    Debug.Log("score added at " + i);
                     break;
                 }
 
