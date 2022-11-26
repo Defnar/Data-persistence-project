@@ -50,7 +50,6 @@ public class MenuUIHandler : MonoBehaviour
     {
         playerName = textBox.text;
         GameManager.Instance.storeName(playerName);
-        Debug.Log(GameManager.Instance.playerName);
         SceneManager.LoadScene(1);
     }
 
